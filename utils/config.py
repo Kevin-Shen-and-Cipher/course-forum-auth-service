@@ -20,3 +20,7 @@ def get_secret_key():
 def get_ip():
     IP = dotenv.get('IP')
     return IP
+
+def get_port():
+    PORT = dotenv.get('PORT')
+    return PORT
