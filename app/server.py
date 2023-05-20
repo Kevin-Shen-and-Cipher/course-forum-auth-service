@@ -17,4 +17,5 @@ def login():
 
 if __name__ == "__main__":
     IP = config.get_ip()
-    app.run(debug=True, host=IP, port=5000)
+    PORT = config.get_port()
+    app.run(debug=True, host=IP, port=PORT)
