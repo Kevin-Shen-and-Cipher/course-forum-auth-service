@@ -1,26 +1,27 @@
-from dotenv import DotEnv
+from dotenv import load_dotenv
+import os
 
-dotenv = DotEnv('../config/.env')
+load_dotenv()
 
 
 def get_admin_username():
-    ADMIN_USERNAME = dotenv.get('ADMIN_USERNAME')
+    ADMIN_USERNAME = os.getenv("ADMIN_USERNAME")
     return ADMIN_USERNAME
 
 
 def get_admin_password():
-    ADMIN_USERNAME = dotenv.get('ADMIN_USERNAME')
-    return ADMIN_USERNAME
+    ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD")
+    return ADMIN_PASSWORD
 
 
 def get_secret_key():
-    JWT_SECRET = dotenv.get('JWT_SECRET')
+    JWT_SECRET = os.getenv("JWT_SECRET")
     return JWT_SECRET
 
 def get_ip():
-    IP = dotenv.get('IP')
+    IP = os.getenv("IP")
     return IP
 
 def get_port():
-    PORT = dotenv.get('PORT')
+    PORT = os.getenv("PORT")
     return PORT

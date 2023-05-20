@@ -3,7 +3,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
-import capcha
+from utils import capcha
 
 LOGIN_URL = 'https://webap0.nkust.edu.tw/nkust/index_main.html'
 
