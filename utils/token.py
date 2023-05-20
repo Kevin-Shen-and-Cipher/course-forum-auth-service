@@ -4,7 +4,7 @@ import jwt
 from utils import config
 
 
-def get_jwt(department, identify, exp):
+def encode_jwt(department, identify, exp):
     payload = {'department': department, 'identify': identify, 'exp': exp}
     secret_key = config.get_secret_key()
 
