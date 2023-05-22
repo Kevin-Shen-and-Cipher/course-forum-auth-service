@@ -4,7 +4,7 @@ from utils import token, crawler, config
 
 ADMIN_USERNAME = config.get_admin_username()
 ADMIN_PAASWORD = config.get_admin_password()
-EXP_TIME = 30
+EXP_TIME = config.get_exp_time()
 
 def login(username, password):
     http_code = 200
@@ -29,4 +29,8 @@ def login(username, password):
             'department': department
         }
 
+    return http_code, data
+
+def verify(jwt_token):
+    http_code, data = token.decode_jwt(jwt_token)
     return http_code, data
