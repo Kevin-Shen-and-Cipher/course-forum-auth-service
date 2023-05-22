@@ -4,7 +4,7 @@ from utils import token, crawler, config
 
 ADMIN_USERNAME = config.get_admin_username()
 ADMIN_PAASWORD = config.get_admin_password()
-EXP_TIME = config.get_exp_time()
+EXP_TIME = int(config.get_exp_time())
 
 def login(username, password):
     http_code = 200
