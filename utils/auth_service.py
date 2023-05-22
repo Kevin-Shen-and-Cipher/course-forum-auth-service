@@ -1,10 +1,10 @@
-from datetime import datetime
+import datetime
 
 from utils import token, crawler, config
 
 ADMIN_USERNAME = config.get_admin_username()
 ADMIN_PAASWORD = config.get_admin_password()
-EXP_TIME = config.get_exp_time()
+EXP_TIME = int(config.get_exp_time())
 
 def login(username, password):
     http_code = 200
@@ -20,7 +20,8 @@ def login(username, password):
 
     # login successful
     if http_code == 200:
-        exp = datetime.datetime.utcnow() + datetime.timedelta(minutes=EXP_TIME)
+        exp = datetime.datetime.utcnow() + datetime.timedelta(minutes=EXP_TIME, hours=+8)
+        exp = int(exp.timestamp())
         jwt = token.encode_jwt(department, identify, exp)
         data = {
             'identify': identify,
