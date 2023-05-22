@@ -14,6 +14,14 @@ def login():
 
     return http_code, jsonify(data)
 
+@app.route('/verify', methods=['POST'])
+def tokens_verify():
+    auth = request.get_json()
+    jwt = auth.token
+
+    http_code, data = auth_service.verify(jwt)
+
+    return http_code, jsonify(data)
 
 if __name__ == "__main__":
     IP = config.get_ip()

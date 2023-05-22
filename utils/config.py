@@ -18,6 +18,10 @@ def get_secret_key():
     JWT_SECRET = os.getenv("JWT_SECRET")
     return JWT_SECRET
 
+def get_exp_time():
+    EXP_TIME = os.getenv("EXP_TIME")
+    return EXP_TIME
+
 def get_ip():
     IP = os.getenv("IP")
     return IP
