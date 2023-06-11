@@ -1,5 +1,3 @@
-from datetime import datetime
-
 import jwt
 from jwt import ExpiredSignatureError
 
