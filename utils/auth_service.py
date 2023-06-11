@@ -1,5 +1,4 @@
 import datetime
-
 from utils import token, crawler, config
 
 ADMIN_USERNAME = config.get_admin_username()

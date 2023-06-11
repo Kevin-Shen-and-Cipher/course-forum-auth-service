@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from utils import capcha
 
-LOGIN_URL = 'https://webap0.nkust.edu.tw/nkust/index_main.html'
+LOGIN_URL = 'https://webap.nkust.edu.tw/nkust/index_main.html'
 
 
 def set_webdriver():
@@ -14,7 +14,6 @@ def set_webdriver():
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--no-sandbox')
     return webdriver.Chrome(options=chrome_options)
-
 
 def not_empty(browser):
     try:
@@ -25,9 +24,10 @@ def not_empty(browser):
 
 
 def get_capcha_image(browser):
+    image = None
     try:
-        WebDriverWait(browser, 10).until(not_empty)
-        capcha_image = WebDriverWait(browser, 10).until(
+        WebDriverWait(browser, 5).until(not_empty)
+        capcha_image = WebDriverWait(browser, 5).until(
             EC.visibility_of_element_located((By.ID, "verifyCode"))
         )
         image = capcha_image.screenshot_as_png
@@ -35,18 +35,16 @@ def get_capcha_image(browser):
         print("get capcha error:", error)
     return image
 
-
 def login(username, password):
     browser = set_webdriver()
-    browser.get(LOGIN_URL)
     count = 0
     state = 500
     department = ""
     while count < 3:
         try:
+            browser.get(LOGIN_URL)
             capcha_img = get_capcha_image(browser)
             capcha_code = capcha.identify_capcha(capcha_img)
-
             element_username = browser.find_element(By.ID, "uid")
             element_password = browser.find_element(By.ID, "pwd")
             element_captcha = browser.find_element(By.ID, "etxt_code")
@@ -68,8 +66,10 @@ def login(username, password):
                 count += 1
             else:
                 print(error)
+                count += 1
 
     http_code = http_code_parser(state)
+    browser.quit()
 
     return http_code, department
 
@@ -87,7 +87,7 @@ Http code
 
 
 def http_code_parser(state):
-    switch = {"f_left.jsp": 200, '無此帳號或密碼不正確': 400, '帳號不可空白': 400, '密碼不可空白': 400, '繁忙': 500}
+    switch = {"f_index.html": 200, 'f_head.jsp': 200, '無此帳號或密碼不正確': 400, '帳號不可空白': 400, '密碼不可空白': 400, '繁忙': 500}
 
     for key in switch:
         if key in state:
