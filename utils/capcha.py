@@ -3,4 +3,9 @@ import ddddocr
 
 def identify_capcha(image):
     ocr = ddddocr.DdddOcr()
-    return ocr.classification(image)
+    try:
+        capcha = ocr.classification(image)
+    except Exception as error:
+        print(error)
+        capcha = ""
+    return capcha
