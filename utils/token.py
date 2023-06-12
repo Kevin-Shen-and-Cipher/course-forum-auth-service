@@ -1,5 +1,3 @@
-from datetime import datetime
-
 import jwt
 from jwt import ExpiredSignatureError
 
@@ -19,6 +17,7 @@ def decode_jwt(jwt_token):
         secret_key = config.get_secret_key()
         decoded_token = jwt.decode(jwt_token, secret_key, algorithms=["HS256"])
         data = {'identify': decoded_token['identify']}
+
         return 200, data
     except ExpiredSignatureError as error:
         print("jwt expired:", error)

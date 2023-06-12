@@ -1,0 +1,6 @@
+Flask~=2.3.2
+PyJWT~=2.7.0
+ddddocr~=1.4.7
+python-dotenv~=1.0.0
+selenium~=4.9.1
+Flask-Cors~=3.0.10
