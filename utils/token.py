@@ -11,6 +11,7 @@ def encode_jwt(department, identify, exp):
     jwt_token = jwt.encode(payload, secret_key, algorithm='HS256')
     return jwt_token
 
+
 def decode_jwt(jwt_token):
     data = {}
     try:

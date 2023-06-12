@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from utils import capcha
 
-LOGIN_URL = 'https://webap.nkust.edu.tw/nkust/index_main.html'
+_LOGIN_URL = 'https://webap.nkust.edu.tw/nkust/index_main.html'
 
 
 def set_webdriver():
@@ -14,6 +14,7 @@ def set_webdriver():
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--no-sandbox')
     return webdriver.Chrome(options=chrome_options)
+
 
 def not_empty(browser):
     try:
@@ -35,6 +36,7 @@ def get_capcha_image(browser):
         print("get capcha error:", error)
     return image
 
+
 def login(username, password):
     browser = set_webdriver()
     count = 0
@@ -42,9 +44,9 @@ def login(username, password):
     department = ""
     while count < 3:
         try:
-            browser.get(LOGIN_URL)
+            browser.get(_LOGIN_URL)
             capcha_img = get_capcha_image(browser)
-            capcha_code = capcha.identify_capcha(capcha_img)
+            capcha_code = capcha.identify_capcha("ASDASD")
             element_username = browser.find_element(By.ID, "uid")
             element_password = browser.find_element(By.ID, "pwd")
             element_captcha = browser.find_element(By.ID, "etxt_code")
@@ -87,7 +89,8 @@ Http code
 
 
 def http_code_parser(state):
-    switch = {"f_index.html": 200, 'f_head.jsp': 200, '無此帳號或密碼不正確': 400, '帳號不可空白': 400, '密碼不可空白': 400, '繁忙': 500}
+    switch = {"f_index.html": 200, 'f_head.jsp': 200, '無此帳號或密碼不正確': 400, '帳號不可空白': 400,
+              '密碼不可空白': 400, '繁忙': 500}
 
     for key in switch:
         if key in state:

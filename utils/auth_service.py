@@ -1,9 +1,10 @@
 import datetime
 from utils import token, crawler, config
 
-ADMIN_USERNAME = config.get_admin_username()
-ADMIN_PAASWORD = config.get_admin_password()
-EXP_TIME = int(config.get_exp_time())
+_ADMIN_USERNAME = config.get_admin_username()
+_ADMIN_PASSWORD = config.get_admin_password()
+_EXP_TIME = int(config.get_exp_time())
+
 
 def login(username, password):
     http_code = 200
@@ -11,7 +12,7 @@ def login(username, password):
     identify = "user"
 
     # admin login
-    if username == ADMIN_USERNAME and password == ADMIN_PAASWORD:
+    if username == _ADMIN_USERNAME and password == _ADMIN_PASSWORD:
         department = 'admin'
         identify = 'admin'
     else:
@@ -19,7 +20,7 @@ def login(username, password):
 
     # login successful
     if http_code == 200:
-        exp = datetime.datetime.utcnow() + datetime.timedelta(minutes=EXP_TIME, hours=+8)
+        exp = datetime.datetime.utcnow() + datetime.timedelta(minutes=_EXP_TIME, hours=+8)
         exp = int(exp.timestamp())
         jwt = token.encode_jwt(department, identify, exp)
         data = {
@@ -30,6 +31,7 @@ def login(username, password):
         }
 
     return http_code, data
+
 
 def verify(jwt_token):
     http_code, data = token.decode_jwt(jwt_token)
