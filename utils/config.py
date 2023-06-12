@@ -5,26 +5,29 @@ load_dotenv()
 
 
 def get_admin_username():
-    ADMIN_USERNAME = os.getenv("ADMIN_USERNAME")
-    return ADMIN_USERNAME
+    admin_username = os.getenv("ADMIN_USERNAME")
+    return admin_username
 
 
 def get_admin_password():
-    ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD")
-    return ADMIN_PASSWORD
+    admin_password = os.getenv("ADMIN_PASSWORD")
+    return admin_password
 
 
 def get_secret_key():
-    JWT_SECRET = os.getenv("JWT_SECRET")
-    return JWT_SECRET
+    jwt_secret = os.getenv("JWT_SECRET")
+    return jwt_secret
+
 
 def get_exp_time():
-    EXP_TIME = os.getenv("EXP_TIME")
-    return EXP_TIME
+    exp_time = os.getenv("EXP_TIME")
+    return exp_time
+
 
 def get_ip():
-    IP = os.getenv("IP")
-    return IP
+    ip = os.getenv("IP")
+    return ip
+
 
 def get_port():
     PORT = os.getenv("PORT")
