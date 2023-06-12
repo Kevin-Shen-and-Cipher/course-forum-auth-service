@@ -7,7 +7,7 @@ RUN apt-get update \
   && apt-get install -y --no-install-recommends --no-install-suggests \
   build-essential && pip install --no-cache-dir --upgrade pip
 
-RUN pip install --no-cache-dir --requirement /app/requirements.txt
+RUN pip install --no-cache-dir --requirement requirements.txt
 
 
 EXPOSE 5000
