@@ -46,7 +46,7 @@ def login(username, password):
         try:
             browser.get(_LOGIN_URL)
             capcha_img = get_capcha_image(browser)
-            capcha_code = capcha.identify_capcha("ASDASD")
+            capcha_code = capcha.identify_capcha(capcha_img)
             element_username = browser.find_element(By.ID, "uid")
             element_password = browser.find_element(By.ID, "pwd")
             element_captcha = browser.find_element(By.ID, "etxt_code")
